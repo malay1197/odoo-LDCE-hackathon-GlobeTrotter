@@ -77,3 +77,5 @@ GlobeTrotter is an end-to-end personalized travel planner designed for multi-cit
 
 3. **Open Application**:
    Navigate to `http://localhost:8080/` in any modern browser.
+
+<!-- Last verified update: 2026-08-22 12:33:55 by Malay Patel -->
