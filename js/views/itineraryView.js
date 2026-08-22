@@ -1,4 +1,4 @@
-// Itinerary Visualization View (Day-wise Layout with View Toggle)
+// Itinerary Visualization View (Day-wise Layout with View Toggle & PDF Voucher Export)
 import { db } from '../db/database.js';
 import { formatINR, formatDateRange } from '../utils/formatters.js';
 
@@ -42,13 +42,14 @@ export function renderItineraryView(tripId, viewMode = 'list') {
           </p>
         </div>
 
-        <div style="display:flex; gap:0.75rem;">
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
           <div class="tabs" style="margin-bottom:0;">
             <button class="tab-btn ${viewMode === 'list' ? 'active' : ''}" onclick="window.GlobeTrotter.switchItineraryMode('${trip.id}', 'list')">📋 List View</button>
             <button class="tab-btn ${viewMode === 'timeline' ? 'active' : ''}" onclick="window.GlobeTrotter.switchItineraryMode('${trip.id}', 'timeline')">⏱️ Timeline</button>
             <button class="tab-btn ${viewMode === 'calendar' ? 'active' : ''}" onclick="window.GlobeTrotter.switchItineraryMode('${trip.id}', 'calendar')">📅 Calendar</button>
           </div>
           <button class="btn btn-primary" onclick="window.location.hash = '#builder/${trip.id}'">✏️ Edit Builder</button>
+          <button class="btn btn-secondary" onclick="window.print()">🖨️ Print / Save PDF</button>
           <button class="btn btn-outline" onclick="window.GlobeTrotter.shareTrip('${trip.id}')">🔗 Share</button>
         </div>
       </div>

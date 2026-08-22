@@ -1,5 +1,6 @@
-// Destination & City Search Discovery View
+// Destination & City Search Discovery View with Live Weather Intelligence
 import { db } from '../db/database.js';
+import { getCityWeather } from '../config/apiKeys.js';
 
 export function renderCitySearchView(searchQuery = '', regionFilter = 'All', costFilter = 'All') {
   let cities = db.getAll('cities');
@@ -22,7 +23,7 @@ export function renderCitySearchView(searchQuery = '', regionFilter = 'All', cos
       <div style="margin-bottom:2rem;">
         <span class="badge badge-coral">Destinations</span>
         <h1 style="font-size: 2.2rem; margin-top: 0.25rem;">Explore Destinations in India</h1>
-        <p style="color:var(--text-muted); font-size:1rem;">Discover royal palaces, tropical beaches, salt deserts, and Himalayan retreats.</p>
+        <p style="color:var(--text-muted); font-size:1rem;">Discover royal palaces, tropical beaches, salt deserts, and Himalayan retreats with real-time weather intelligence.</p>
       </div>
 
       <!-- Search & Filter Controls -->
@@ -59,32 +60,36 @@ export function renderCitySearchView(searchQuery = '', regionFilter = 'All', cos
 
       <!-- City Cards Grid -->
       <div class="grid-3">
-        ${cities.map(city => `
-          <div class="city-card">
-            <div style="position:relative;">
-              <img src="${city.image}" class="city-card-img" alt="${city.name}">
-              <span class="badge badge-coral" style="position:absolute; top:12px; right:12px;">${city.cost_index}</span>
-              <span class="badge badge-gold" style="position:absolute; top:12px; left:12px;">★ ${city.popularity}% Popular</span>
-            </div>
-
-            <div class="city-card-body">
-              <h3 style="font-size:1.3rem; margin-bottom:0.25rem;">${city.name}</h3>
-              <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">${city.state}, ${city.country}</p>
-              <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:1rem; flex:1;">${city.description}</p>
-              
-              <div style="background:var(--bg-warm-subtle); padding:0.65rem; border-radius:var(--radius-sm); font-size:0.8rem; display:flex; justify-content:space-between; margin-bottom:1rem;">
-                <span>⏱️ Rec Duration: <strong>${city.recommended_duration}</strong></span>
-                <span>☀️ Best Season: <strong>${city.best_season}</strong></span>
+        ${cities.map(city => {
+          const weather = getCityWeather(city.name);
+          return `
+            <div class="city-card">
+              <div style="position:relative;">
+                <img src="${city.image}" class="city-card-img" alt="${city.name}">
+                <span class="badge badge-coral" style="position:absolute; top:12px; right:12px;">${city.cost_index}</span>
+                <span class="badge badge-gold" style="position:absolute; top:12px; left:12px;">★ ${city.popularity}% Popular</span>
+                <span class="badge badge-blue" style="position:absolute; bottom:12px; left:12px;">${weather.icon} ${weather.temp}°C • ${weather.condition}</span>
               </div>
 
-              <div class="city-meta">
-                <button class="btn btn-primary" style="width:100%;" onclick="window.GlobeTrotter.addCityToTripModal('${city.id}')">
-                  ➕ Add Destination to Trip
-                </button>
+              <div class="city-card-body">
+                <h3 style="font-size:1.3rem; margin-bottom:0.25rem;">${city.name}</h3>
+                <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">${city.state}, ${city.country}</p>
+                <p style="font-size:0.9rem; color:var(--text-main); margin-bottom:1rem; flex:1;">${city.description}</p>
+                
+                <div style="background:var(--bg-warm-subtle); padding:0.65rem; border-radius:var(--radius-sm); font-size:0.8rem; display:flex; justify-content:space-between; margin-bottom:1rem;">
+                  <span>⏱️ Rec Duration: <strong>${city.recommended_duration}</strong></span>
+                  <span>☀️ Best Season: <strong>${city.best_season}</strong></span>
+                </div>
+
+                <div class="city-meta">
+                  <button class="btn btn-primary" style="width:100%;" onclick="window.GlobeTrotter.addCityToTripModal('${city.id}')">
+                    ➕ Add Destination to Trip
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        `).join('')}
+          `;
+        }).join('')}
       </div>
     </div>
   `;
