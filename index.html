@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GlobeTrotter — Intelligent Multi-City Travel Planner</title>
+  <meta name="description" content="Build personalized multi-city journeys, manage your budget in ₹ INR, and discover experiences across India — all in one intelligent travel workspace.">
+  
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  
+  <!-- Chart.js CDN for Budget Visualizations -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div id="app-container">
+    <!-- Header Navbar -->
+    <header id="header-container"></header>
+
+    <!-- Main View Container -->
+    <main id="main-view"></main>
+
+    <!-- Footer -->
+    <footer>
+      <div style="max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div class="brand-logo" style="font-size: 1.2rem;" onclick="window.location.hash = '#landing'">
+          <div class="logo-icon" style="width: 28px; height: 28px; font-size: 0.9rem;">🧳</div>
+          <div>Globe<span class="accent">Trotter</span></div>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--text-muted);">
+          © 2026 GlobeTrotter Travel Workspace. Built for Hackathon Excellence. All Indian destinations indexed.
+        </p>
+        <div style="display: flex; gap: 1rem; font-size: 0.85rem;">
+          <a href="#destinations">Destinations</a>
+          <a href="#activities">Activities</a>
+          <a href="#admin">Admin Analytics</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal Container Overlay -->
+  <div id="modal-container"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- App Logic (ES Module) -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
