@@ -191,6 +191,7 @@ class GlobeTrotterApp {
       handleCreateTripSubmit: (e) => {
         e.preventDefault();
         const user = auth.getUser();
+        const userId = user ? user.id : 'usr-malay-1';
         const name = document.getElementById('trip-name').value;
         const startDate = document.getElementById('trip-start-date').value;
         const endDate = document.getElementById('trip-end-date').value;
@@ -199,7 +200,7 @@ class GlobeTrotterApp {
         const coverPhoto = document.getElementById('trip-cover-photo').value;
 
         const newTrip = db.insert('trips', {
-          user_id: user.id,
+          user_id: userId,
           name,
           start_date: startDate,
           end_date: endDate,

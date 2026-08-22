@@ -4,8 +4,14 @@ import { db } from '../db/database.js';
 import { formatINR, formatDateRange } from '../utils/formatters.js';
 
 export function renderDashboardView() {
-  const user = auth.getUser() || { name: 'Malay' };
-  const userTrips = db.where('trips', t => t.user_id === user.id);
+  const user = auth.getUser() || { id: 'usr-malay-1', name: 'Malay Rajput' };
+  const userId = user.id || 'usr-malay-1';
+  
+  let userTrips = db.where('trips', t => t.user_id === userId);
+  if (userTrips.length === 0) {
+    userTrips = db.getAll('trips');
+  }
+
   const cities = db.getAll('cities').slice(0, 3);
 
   const upcomingTrips = userTrips.filter(t => t.status === 'Upcoming');
@@ -18,7 +24,7 @@ export function renderDashboardView() {
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
           <div>
             <span class="badge badge-coral" style="margin-bottom: 0.5rem;">Travel Command Center</span>
-            <h1 style="font-size: 2.2rem;">Good morning, ${user.name.split(' ')[0]} 👋</h1>
+            <h1 style="font-size: 2.2rem;">Good morning, ${user.name ? user.name.split(' ')[0] : 'Traveler'} 👋</h1>
             <p style="color: var(--text-muted); font-size: 1.05rem;">Where are you going next?</p>
           </div>
           <div style="display: flex; gap: 0.85rem;">

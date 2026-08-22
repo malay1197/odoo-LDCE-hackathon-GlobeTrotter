@@ -4,8 +4,13 @@ import { db } from '../db/database.js';
 import { formatINR, formatDateRange } from '../utils/formatters.js';
 
 export function renderMyTripsView(filterStatus = 'All', searchQuery = '') {
-  const user = auth.getUser();
-  let trips = db.where('trips', t => t.user_id === (user ? user.id : 'usr-malay-1'));
+  const user = auth.getUser() || { id: 'usr-malay-1', name: 'Malay Rajput' };
+  const userId = user.id || 'usr-malay-1';
+
+  let trips = db.where('trips', t => t.user_id === userId || !t.user_id);
+  if (trips.length === 0) {
+    trips = db.getAll('trips');
+  }
 
   if (filterStatus !== 'All') {
     trips = trips.filter(t => t.status === filterStatus);
