@@ -199,12 +199,12 @@ function CitiesExplorer() {
             </select>
           </div>
 
-          <div className="flex justify-between items-center border-t border-brand-border/60 pt-4">
-            <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-3 border-t border-brand-border/60 pt-4">
+            <div className="flex gap-4 w-full sm:w-auto">
               <select
                 value={popularityFilter}
                 onChange={(e) => setPopularityFilter(e.target.value)}
-                className="px-4 py-1.5 bg-brand-background border border-brand-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-brand-text cursor-pointer"
+                className="w-full sm:w-auto px-4 py-2 bg-brand-background border border-brand-border/60 rounded-full text-[10px] font-bold uppercase tracking-wider text-brand-text cursor-pointer"
               >
                 <option value="">Any Popularity</option>
                 <option value="8">Popular (8+ rating)</option>
@@ -214,7 +214,7 @@ function CitiesExplorer() {
             
             <button
               onClick={handleSearch}
-              className="bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-[10px] font-extrabold uppercase tracking-wider px-5 py-2 rounded-full shadow-premium transition-all cursor-pointer"
+              className="w-full sm:w-auto text-center bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-[10px] font-extrabold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-premium transition-all cursor-pointer"
             >
               Query Database
             </button>

@@ -91,7 +91,7 @@ function SortableActivityCard({ item, onEdit, onDelete }: { item: any; onEdit: (
           {formatCurrency(cost)}
         </span>
 
-        <div className="flex gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="flex gap-1.5 opacity-100 md:opacity-0 md:group-hover:opacity-100 transition-opacity">
           <button
             onClick={onEdit}
             className="p-1.5 text-brand-muted hover:text-brand-primary hover:bg-brand-primary/5 rounded-full cursor-pointer"
@@ -426,24 +426,24 @@ export default function ItineraryBuilder({ tripId }: ItineraryBuilderProps) {
     <div className="flex flex-col h-[calc(screen-16px)]">
       
       {/* Sub-Header bar */}
-      <div className="bg-brand-surface border-b border-brand-border/60 py-4 px-6 md:px-8 flex justify-between items-center shadow-inner">
+      <div className="bg-brand-surface border-b border-brand-border/60 py-4 px-4 sm:px-6 md:px-8 flex flex-col sm:flex-row gap-3 justify-between sm:items-center shadow-inner">
         <div>
           <span className="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Itinerary Builder</span>
-          <h1 className="font-serif text-2xl font-bold text-brand-dark leading-tight">{trip.title}</h1>
+          <h1 className="font-serif text-xl sm:text-2xl font-bold text-brand-dark leading-tight">{trip.title}</h1>
           <p className="text-xs text-brand-muted font-semibold mt-0.5">
             {formatDateRange(trip.startDate, trip.endDate)}
           </p>
         </div>
-        <div className="flex gap-3">
+        <div className="flex gap-2 sm:gap-3 flex-wrap">
           <Link
             href={`/trips/${tripId}`}
-            className="px-5 py-2 bg-brand-surface hover:bg-brand-background text-brand-primary border border-brand-border rounded-full text-xs font-bold uppercase tracking-wider transition-all"
+            className="flex-1 sm:flex-initial text-center px-4 sm:px-5 py-2 bg-brand-surface hover:bg-brand-background text-brand-primary border border-brand-border rounded-full text-xs font-bold uppercase tracking-wider transition-all"
           >
             Preview
           </Link>
           <Link
             href={`/trips/${tripId}/budget`}
-            className="px-5 py-2 bg-brand-primary hover:bg-brand-primary/95 text-brand-surface rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-premium"
+            className="flex-1 sm:flex-initial text-center px-4 sm:px-5 py-2 bg-brand-primary hover:bg-brand-primary/95 text-brand-surface rounded-full text-xs font-bold uppercase tracking-wider transition-all shadow-premium"
           >
             Budget Analysis
           </Link>

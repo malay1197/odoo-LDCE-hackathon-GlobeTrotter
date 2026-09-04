@@ -44,7 +44,7 @@ export default function CloneTripButton({ tripId, slug }: CloneTripButtonProps) 
     <button
       onClick={handleCopy}
       disabled={loading}
-      className="bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full flex items-center gap-1.5 shadow-premium hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 select-none cursor-pointer shrink-0"
+      className="w-full sm:w-auto justify-center bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-xs font-bold uppercase tracking-wider px-6 py-3 rounded-full flex items-center gap-1.5 shadow-premium hover:scale-[1.02] active:scale-[0.98] transition-all disabled:opacity-50 select-none cursor-pointer shrink-0"
     >
       {loading ? (
         <Loader2 className="w-4 h-4 animate-spin" />

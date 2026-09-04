@@ -212,10 +212,10 @@ export default function InteractiveGlobe() {
       </Canvas>
 
       {/* Left Instructions overlay */}
-      <div className="absolute top-6 left-6 pointer-events-none text-left">
-        <span className="text-xs font-bold text-brand-secondary uppercase tracking-widest">3D Earth explorer</span>
-        <h3 className="font-serif text-2xl text-brand-primary mt-1">Interactive Globe</h3>
-        <p className="text-[10px] text-brand-muted font-semibold mt-1">DRAG TO ROTATE • CLICK PINS</p>
+      <div className="absolute top-4 left-4 md:top-6 md:left-6 pointer-events-none text-left">
+        <span className="text-[10px] md:text-xs font-bold text-brand-secondary uppercase tracking-widest">3D Earth explorer</span>
+        <h3 className="font-serif text-xl md:text-2xl text-brand-primary mt-0.5 md:mt-1">Interactive Globe</h3>
+        <p className="text-[9px] md:text-[10px] text-brand-muted font-semibold mt-0.5 md:mt-1">DRAG TO ROTATE • CLICK PINS</p>
       </div>
 
       {/* Selected City Details popover */}
@@ -225,7 +225,7 @@ export default function InteractiveGlobe() {
             initial={{ opacity: 0, scale: 0.95, y: 15 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 15 }}
-            className="absolute bottom-6 left-6 right-6 md:left-auto md:right-6 md:w-80 bg-brand-surface border border-brand-border/80 rounded-3xl p-5 shadow-depth z-20 text-left flex flex-col gap-4"
+            className="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-auto md:right-6 md:w-80 bg-brand-surface border border-brand-border/80 rounded-3xl p-4 md:p-5 shadow-depth z-20 text-left flex flex-col gap-3 md:gap-4 max-h-[85%] overflow-y-auto"
           >
             <div className="relative h-32 w-full rounded-2xl overflow-hidden">
               <img src={selectedCity.image} alt={selectedCity.name} className="w-full h-full object-cover" />

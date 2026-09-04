@@ -16,7 +16,8 @@ export default function Navbar() {
   const isAdmin = session?.user?.role === 'ADMIN';
 
   const navLinks = [
-    { name: 'Explore', href: '/explore/cities', icon: Compass },
+    { name: 'Cities', href: '/explore/cities', icon: Compass },
+    { name: 'Activities', href: '/explore/activities', icon: Compass },
     ...(isLoggedIn
       ? [
           { name: 'Dashboard', href: '/dashboard', icon: Globe },

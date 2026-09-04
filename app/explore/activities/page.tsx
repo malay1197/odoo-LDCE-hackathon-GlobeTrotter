@@ -209,7 +209,7 @@ export default function ActivitiesExplorerPage() {
           <div className="flex justify-end border-t border-brand-border/60 pt-4">
             <button
               onClick={handleSearch}
-              className="bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-[10px] font-extrabold uppercase tracking-wider px-5 py-2 rounded-full shadow-premium transition-all cursor-pointer"
+              className="w-full sm:w-auto text-center bg-brand-primary hover:bg-brand-primary/95 text-brand-surface text-[10px] font-extrabold uppercase tracking-wider px-5 py-2.5 rounded-full shadow-premium transition-all cursor-pointer"
             >
               Query Catalog
             </button>

@@ -27,7 +27,7 @@ export default function LandingPage() {
         <span className="text-xs font-bold text-brand-accent uppercase tracking-widest bg-brand-accent/10 px-4 py-1.5 rounded-full border border-brand-accent/20">
           Personalized Travel Planning
         </span>
-        <h1 className="mt-6 font-serif text-5xl md:text-7xl font-extrabold text-brand-dark tracking-tight max-w-4xl leading-[1.1]">
+        <h1 className="mt-6 font-serif text-3xl sm:text-5xl md:text-7xl font-extrabold text-brand-dark tracking-tight max-w-4xl leading-[1.1]">
           YOUR NEXT JOURNEY <br />
           <span className="text-brand-primary">STARTS HERE.</span>
         </h1>

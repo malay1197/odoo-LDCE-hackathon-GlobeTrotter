@@ -163,11 +163,13 @@ export default function TripBudgetPage({
   });
 
   // Scheduled activity costs
+  let itineraryItemsCount = 0;
   trip.stops.forEach((stop: any) => {
     stop.itineraryItems.forEach((item: any) => {
       const cost = item.customCost !== null ? item.customCost : item.activity.estimatedCost;
       categoryTotals['ACTIVITY'] += cost;
       totalExpenses += cost;
+      itineraryItemsCount++;
     });
   });
 
