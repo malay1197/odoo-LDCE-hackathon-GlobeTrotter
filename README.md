@@ -1,91 +1,236 @@
-# 🧳 GlobeTrotter — Intelligent Multi-City Travel Planning Workspace
+# 🧭 GlobeTrotter — Personalized Multi-City Travel Planning
 
-> **Odoo LDCE Hackathon Build** | Production-Quality 2D Travel Workspace
+> A production-grade, full-stack web application for seamless multi-city travel planning, budgeting, route mapping, and step-by-step itinerary scheduling.
 
-GlobeTrotter is an end-to-end personalized travel planner designed for multi-city journeys across India. It empowers travelers to organize destinations, assign activities, manage real-time budgets in ₹ INR with daily average analytics, generate itineraries via AI, and share journey plans.
+Built with **Next.js 14 App Router**, **TypeScript**, **Tailwind CSS**, **Prisma ORM**, **MySQL 8+**, **Auth.js / NextAuth**, **Three.js (WebGL)**, and **Recharts**.
 
 ---
 
 ## 🌟 Key Features
 
-### 1. 🔐 Complete Authentication Engine
-- **Login & Signup**: Validation, SHA-256 password hashing, protected routes, and session JWT persistence.
-- **Forgot Password**: Password reset request modal flow.
-- **Pre-configured Demo Credentials**:
-  - Email: `malay@globetrotter.io`
-  - Password: `password123`
+- 🌍 **Interactive 3D WebGL Globe**:
+  - Rotating low-poly interactive globe rendered with Three.js and React Three Fiber.
+  - Interactive city nodes (Paris, Tokyo, Dubai, Rome, Bali, London, New York, Singapore) with hover cards and navigation hooks.
+  - Automatic fallback to high-fidelity SVG projection on mobile devices or unsupported browsers.
 
-### 2. 📊 Travel Command Center Dashboard
-- Personalized greeting ("Good morning, Malay 👋").
-- Quick destination search bar across 50+ indexed Indian cities.
-- Featured journey highlight, recent trips, recommended destinations, and budget progress summary.
+- 🗓️ **Drag-and-Drop Itinerary Builder**:
+  - Multi-city travel planner powered by `@dnd-kit/core` and `@dnd-kit/sortable`.
+  - Day-by-day vertical timeline for scheduling activities with time slots, durations, custom costs, and personal notes.
+  - Reorder activities within and across days with instant database synchronization.
+  - Adaptive mobile layout with dedicated tab navigation.
 
-### 3. 🗺️ Multi-City Itinerary Builder & Visualization
-- **Create Trip**: Custom trip name, dates, description, cover photo, target budget (₹ INR), travel style, and interests.
-- **Day-Wise Builder**: Add destination stops (Udaipur, Jaipur, Goa, Kutch, Munnar, Rishikesh, etc.), assign activities, reorder cities, and set departure/arrival dates.
-- **Visualization Modes**: Switch seamlessly between **List View**, **Timeline Mode**, and **Calendar Grid**.
+- 💰 **Budget Analytics & Expense Tracking**:
+  - Live cost tracking compiling scheduled activity costs and custom travel expenses.
+  - Visual analytics powered by **Recharts**: Category Distribution Donut Chart and Daily Spending Timeline Bar Chart.
+  - Intelligent over-budget alerts when daily expenditure targets are exceeded.
+  - City-by-city cost breakdown and comprehensive expense ledger.
 
-### 4. 📍 Destination & Activity Discovery
-- **City Search**: Filter by Region (North-West, West Coast, South, Himalayas, West) and Cost Index (Budget ₹, Moderate ₹₹, Premium ₹₹₹). View recommended duration, best season, and popularity ratings.
-- **Activity Catalog**: Filter by category (Sightseeing, Cultural, Adventure), cost, duration, and high-res preview images.
+- 🗺️ **Interactive Route Map**:
+  - Dynamic Mapbox GL integration displaying trip cities, custom markers, and route lines.
+  - Built-in SVG coordinate projection engine that plots true latitude/longitude coordinates and animates flight-path connections without requiring an external API key.
 
-### 5. 💰 Real-Time ₹ INR Budget Analytics & Alerts
-- Real-time calculated costs for **Transport**, **Stay**, **Activities**, **Meals**, and **Miscellaneous**.
-- Indian numbering currency formatting (e.g., `₹1,500`, `₹12,500`, `₹1,25,000`).
-- Daily average spend calculation (`Total Cost / Total Days`).
-- **Over-Budget Warnings**: Overage alerts with instant budget optimization suggestions.
-- Interactive **Chart.js Doughnut Chart** showing cost distribution by category.
+- 🔍 **City & Activity Discovery Catalog**:
+  - Explore curated international destinations with cost indices, popularity ratings, and rich descriptions.
+  - Filter activities by category (*Adventure, Food, Culture, Nature, Nightlife, Shopping*), duration, and cost.
+  - Add destinations and activities directly to existing trips with one click.
+  - Save bucket-list destinations with persistent heart toggles.
 
-### 6. 🔗 Public Share & Copy Trip Engine
-- Generates unique shareable read-only public URL (`#share/:id`).
-- One-click **"Copy Trip"** feature that clones the shared itinerary into the logged-in user's library as a customizable copy.
-- Direct social sharing buttons for WhatsApp and Twitter.
+- 🔗 **Public Trip Sharing & One-Click Cloning**:
+  - Generate unique, secure public share links (`/shared/[slug]`).
+  - Read-only showcase view for friends and fellow travelers.
+  - One-click **"Copy Trip to Profile"** clones the full route, city stops, and scheduled activities to the logged-in user's account in a single atomic database transaction.
 
-### 7. 🤖 Phase 3 AI Suite & Travel Tools
-- **AI Trip Planner**: Generates full multi-city itineraries, stop dates, activities, and budget estimates from natural language prompts.
-- **AI Travel Copilot**: Interactive assistant supporting prompts like *"Make my trip cheaper"*, *"Add food activities"*, *"Keep budget under ₹25,000"*.
-- **Trip Optimizer**: Calculates "Before vs After" savings with one-click budget optimization.
-- **Trip Health Score**: 0-100 feasibility score analyzing budget margins, activity density, and route logistics.
-- **Group Expense Split**: Multi-traveler per-person cost calculator.
-- **Smart Packing Assistant**: Auto-generated checklist customized for Indian travel.
-- **Travel Memories**: Post-trip memory scrapbook.
+- 🛡️ **Role-Protected Admin Panel**:
+  - Accessible only to users with the `ADMIN` role (protected via Next.js Middleware).
+  - Real-time metrics: Total Users, Total Trips, Gross Spending Volume, and Average Trip Cost.
+  - Interactive registration trends and trip creation volume charts.
+  - Top 5 ranked destinations and booked activities.
 
----
-
-## 🛠️ Technology Stack
-
-- **Core**: Vanilla HTML5, JavaScript (ES Modules, modern modular component architecture)
-- **Styling**: Vanilla CSS3 Custom Design System (Warm Ivory `#FAF7F2`, Saffron/Coral `#FF5A36`, Peacock Blue `#007791`, Royal Purple `#6B21A8`, Indian Green `#15803D`)
-- **Database**: Relational Database Engine (IndexedDB + LocalStorage sync) with 13 relational tables
-- **Visualizations**: Chart.js
-- **Server**: PowerShell HTTP Server script (`server.ps1`)
+- 🔐 **Authentication & Security**:
+  - NextAuth.js credentials provider with salted password hashing using `bcryptjs`.
+  - Next.js Route Middleware protecting `/dashboard`, `/trips`, `/profile`, and `/admin`.
+  - Role-based access control (`OWNER`, `EDITOR`, `VIEWER`).
 
 ---
 
-## 🚀 Quick Start Instructions
+## 🛠️ Tech Stack
 
-1. **Clone Repository**:
-   ```bash
-   git clone https://github.com/malay1197/odoo-LDCE-hackathon-GlobeTrotter.git
-   cd odoo-LDCE-hackathon-GlobeTrotter
-   ```
+| Layer | Technology |
+|---|---|
+| **Frontend Framework** | [Next.js 14 (App Router)](https://nextjs.org/) & [React 18](https://react.dev/) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) & [Tailwind Animate](https://github.com/jamiebuilds/tailwindcss-animate) |
+| **Icons & UI Components** | [Lucide React](https://lucide.dev/), [Radix UI](https://www.radix-ui.com/) |
+| **Database & ORM** | [MySQL 8+](https://www.mysql.com/) with [Prisma ORM 5](https://www.prisma.io/) |
+| **Authentication** | [NextAuth.js v4](https://next-auth.js.org/) & [bcryptjs](https://github.com/dcodeIO/bcrypt.js) |
+| **3D WebGL** | [Three.js](https://threejs.org/) & [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber) / [@react-three/drei](https://github.com/pmndrs/drei) |
+| **Drag and Drop** | [@dnd-kit/core](https://dndkit.com/) & [@dnd-kit/sortable](https://dndkit.com/) |
+| **Charts & Visualizations** | [Recharts](https://recharts.org/) |
+| **Mapping** | [Mapbox GL JS](https://www.mapbox.com/) with custom SVG projection fallback |
+| **Form Validation** | [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/) |
 
-2. **Launch Local Web Server**:
-   ```powershell
-   powershell -NoProfile -ExecutionPolicy Bypass -File server.ps1
-   ```
+---
 
-3. **Open Application**:
-   Navigate to `http://localhost:8080/` in any modern browser.
+## 📁 Project Structure
 
-<!-- Last verified update: 2026-08-22 12:33:55 by Malay Patel -->
+```
+globetrotter/
+├── app/
+│   ├── layout.tsx                   # Root layout (Inter + Fraunces typography, Providers)
+│   ├── page.tsx                     # Cinematic landing page with 3D Globe
+│   ├── globals.css                  # Global Tailwind & design system variables
+│   ├── providers.tsx                # NextAuth session context provider
+│   ├── login/page.tsx               # Login page with Zod validation
+│   ├── signup/page.tsx              # Signup page with automatic session signin
+│   ├── dashboard/page.tsx           # Command center (trips, stats, bucket list)
+│   ├── trips/
+│   │   ├── page.tsx                 # My Trips catalog (search, filter, delete)
+│   │   ├── new/page.tsx             # New trip creator with cover image picker
+│   │   └── [id]/
+│   │       ├── page.tsx             # Comprehensive trip itinerary overview
+│   │       ├── ClientViewToggler.tsx# List view vs. Calendar view toggle
+│   │       ├── PublicShareWidget.tsx# Share link generator and clipboard copier
+│   │       ├── builder/page.tsx     # Drag-and-drop itinerary builder
+│   │       └── budget/page.tsx      # Budget analytics with Recharts
+│   ├── explore/
+│   │   ├── cities/page.tsx          # Global city discovery & "Add to Trip"
+│   │   └── activities/page.tsx      # Categorized activity explorer
+│   ├── shared/[slug]/
+│   │   ├── page.tsx                 # Public read-only trip viewer
+│   │   └── CloneTripButton.tsx      # One-click trip clone to profile
+│   ├── profile/page.tsx             # Profile settings, bucket list, account removal
+│   ├── admin/
+│   │   ├── page.tsx                 # Role-protected admin metrics server page
+│   │   └── AdminDashboardClient.tsx # Analytics charts & popular ranking tables
+│   └── api/
+│       ├── auth/
+│       │   ├── [...nextauth]/route.ts # NextAuth route handler
+│       │   └── signup/route.ts        # User registration endpoint
+│       ├── trips/
+│       │   ├── route.ts               # GET user trips / POST create trip
+│       │   └── [id]/
+│       │       ├── route.ts           # GET, PATCH, DELETE single trip
+│       │       ├── clone/route.ts     # Deep clone trip transaction
+│       │       ├── stops/route.ts     # Manage & reorder trip stops
+│       │       ├── stops/[stopId]/route.ts # Edit / delete single stop
+│       │       ├── activities/route.ts     # Add / reorder itinerary activities
+│       │       ├── activities/[itemId]/route.ts # Update schedule / delete activity
+│       │       └── expenses/route.ts  # Trip expenses ledger endpoint
+│       ├── cities/route.ts            # Search and filter cities
+│       ├── activities/route.ts        # Search and filter activities catalog
+│       ├── saved-destinations/
+│       │   ├── route.ts               # GET saved / POST save destination
+│       │   └── [id]/route.ts          # DELETE unsave destination
+│       └── shared/route.ts            # Toggle public status & generate slug
+├── components/
+│   ├── 3d/InteractiveGlobe.tsx      # WebGL 3D Globe with SVG fallback
+│   ├── map/TripMap.tsx              # Mapbox GL map + SVG flight-path projector
+│   ├── itinerary/ItineraryBuilder.tsx # Core dnd-kit itinerary drag-and-drop
+│   └── navigation/Navbar.tsx        # Dynamic responsive navigation bar
+├── lib/
+│   ├── prisma.ts                    # Global Prisma client singleton
+│   ├── auth.ts                      # NextAuth configuration options
+│   ├── validations.ts               # Zod validation schemas
+│   └── utils.ts                     # Styling, date & currency formatters
+├── prisma/
+│   ├── schema.prisma                # Normalized MySQL database schema
+│   └── seed.ts                      # Seed data: 12 cities, 40+ activities, test users
+├── types/
+│   └── next-auth.d.ts               # NextAuth session type declarations
+├── middleware.ts                    # Protected routes middleware
+├── tailwind.config.js               # Editorial theme colors & typography
+├── tsconfig.json                    # TypeScript compiler configuration
+└── package.json
+```
 
-<!-- Last verified update: 2026-08-22 15:01:32 by VedantGadewar04 -->
+---
 
-<!-- Feature patch update: 2026-08-22 13:12:45 +0530 by bharatsingh -->
+## 🗄️ Database Schema
 
-<!-- Feature patch update: 2026-08-22 14:18:30 +0530 by Malay Patel -->
+The relational database is modeled with Prisma and deployed on MySQL 8+:
 
-<!-- Last verified update: 2026-08-22 15:29:03 by Malay Patel -->
+- **`users`**: Account identity, email, hashed password, role (`USER`, `ADMIN`).
+- **`profiles`**: User profile, display name, avatar URL, language preference.
+- **`trips`**: Travel records, title, description, cover image, dates, public share slug.
+- **`trip_members`**: Trip collaboration roles (`OWNER`, `EDITOR`, `VIEWER`).
+- **`cities`**: Global cities with coordinates, region, cost index, and popularity.
+- **`trip_stops`**: Ordered city stops within each trip.
+- **`activities`**: Activity catalog categorized into *Adventure, Food, Culture, Nature, Nightlife, Shopping*.
+- **`itinerary_items`**: Activities scheduled into specific days and stops with order and custom costs.
+- **`expenses`**: Categorized expense ledger (*Transport, Accommodation, Activity, Food, Other*).
+- **`saved_destinations`**: User bucket-list destinations (unique per user/city).
+- **`shared_trips`**: Public share slugs mapped to trips.
 
-<!-- Last verified update: 2026-08-22 16:20:01 by Malay Patel -->
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- **Node.js**: v18.x or higher
+- **MySQL**: 8.0 or higher running on port `3306`
+
+### 2. Installation
+
+Clone the repository and install dependencies:
+```bash
+git clone https://github.com/malay1197/odoo-LDCE-hackathon-GlobeTrotter.git
+cd odoo-LDCE-hackathon-GlobeTrotter
+npm install --legacy-peer-deps
+```
+
+### 3. Environment Setup
+
+Create a `.env` file in the root directory (based on `.env.example`):
+```env
+DATABASE_URL="mysql://root:password@localhost:3306/globetrotter"
+NEXTAUTH_SECRET="globetrotter-super-secret-key-2026"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Optional: Mapbox token (an interactive SVG fallback is used if not provided)
+NEXT_PUBLIC_MAPBOX_ACCESS_TOKEN=""
+```
+
+### 4. Database Initialization & Seeding
+
+Create the database in MySQL:
+```sql
+CREATE DATABASE IF NOT EXISTS globetrotter;
+```
+
+Push the Prisma schema to MySQL and seed realistic destinations and activities:
+```bash
+npx prisma db push
+npx ts-node prisma/seed.ts
+```
+
+### 5. Run the Application
+
+**Development Mode:**
+```bash
+npm run dev
+```
+
+**Production Build:**
+```bash
+npm run build
+npm start
+```
+
+Visit **`http://localhost:3000`** in your browser.
+
+---
+
+## 👥 Default Test Accounts
+
+After running the seed script, the following accounts are pre-configured:
+
+| Role | Email | Password | Access |
+|---|---|---|---|
+| **Standard User** | `user@globetrotter.com` | `password123` | Dashboard, Itinerary Builder, Budget, Explore |
+| **Administrator** | `admin@globetrotter.com` | `password123` | Full access + Admin Operations Dashboard |
+
+---
+
+## 📄 License
+
+This project was built for the **Odoo LDCE Hackathon**. All rights reserved.
